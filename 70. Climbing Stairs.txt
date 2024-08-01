@@ -1,0 +1,21 @@
+//70. Climbing Stairs
+class Solution {
+    public int climbStairs(int n) {
+        int first_step = 1;
+        int second_step = 2;
+        if(n==1){
+            return 1;
+        }
+        else if(n==2){
+            return 2;
+        }
+        else{
+            for(int i =3; i<=n ; i++){
+                int add = first_step+second_step;
+                first_step = second_step;
+                second_step = add;
+            }
+            return second_step;
+        }
+    }
+}

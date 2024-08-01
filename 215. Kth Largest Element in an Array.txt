@@ -1,0 +1,43 @@
+//215. Kth Largest Element in an Array
+class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        return quick(nums,0,nums.length-1,k);
+    }
+
+    public int quick(int[] arr, int low, int high, int k){
+        Random rand = new Random();
+        if (low <= high) {
+            int pivot = low + rand.nextInt(high - low + 1);
+            int p = partition(arr, low, high, pivot);
+            if (p == arr.length - k) {
+                return arr[p];
+            } else if (p < arr.length - k) {
+                return quick(arr, p + 1, high, k);
+            } else {
+                return quick(arr, low, p - 1, k);
+            }
+        }
+        return -1;
+    }
+
+    public int partition(int[] arr,int low,int high,int randPivot){
+        int pivot = arr[randPivot];
+        swap(arr, randPivot, high);
+        int sorted_index = low;
+        for(int j=low; j<high; j++){
+            if(arr[j]<pivot){
+                swap(arr, j,sorted_index);
+                sorted_index++;
+            }
+        }
+        swap(arr,high,sorted_index);
+
+        return sorted_index;
+    }
+
+    public void swap(int[] arr, int i , int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+}

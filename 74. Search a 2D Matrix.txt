@@ -1,0 +1,21 @@
+// 74. Search a 2D Matrix
+
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int row = matrix.length-1;
+        int column = 0;
+        while(row>=0 && column < matrix[row].length){
+            if(target == matrix[row][column]){
+                return true;
+            }
+            else if(target<matrix[row][column]){
+                row-=1;
+            }
+            else{
+                column+=1;
+            }
+        }
+        return false;
+
+    }
+}

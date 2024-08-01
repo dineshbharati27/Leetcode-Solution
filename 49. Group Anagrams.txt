@@ -1,0 +1,37 @@
+//49. Group Anagrams
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map <Map<Character,Integer>,List<String>> map = new HashMap<>();
+        for(String str : strs){
+            Map<Character,Integer> charCountMap = new HashMap<>();
+            for(char c : str.toCharArray()){
+                charCountMap.put(c,charCountMap.getOrDefault(c,0)+1);
+            }
+            if(!map.containsKey(charCountMap)){
+                map.put(charCountMap , new ArrayList<>());
+            }
+            map.get(charCountMap).add(str);
+        }
+        return new ArrayList<>(map.values());
+    }
+}
+
+// optimize approach
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map <String ,List<String>> map = new HashMap<>();
+        for(String word:strs){
+            char[] chars = word.toCharArray();
+            Arrays.sort(chars);
+            String sortedword = new String(chars);
+
+            if(!map.containsKey(sortedword)){
+                map.put(sortedword,new ArrayList<>());
+            }
+            map.get(sortedword).add(word);
+        }
+        return new ArrayList<>(map.values());
+    }
+}

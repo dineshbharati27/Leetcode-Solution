@@ -1,0 +1,41 @@
+//593. Valid Square
+
+class Solution {
+    public boolean validSquare(int[] p1, int[] p2, int[] p3, int[] p4) {
+        if(p1[0] == p2[0] && p1[1] == p2[1]) return false;
+        if(p1[0] == p3[0] && p1[1] == p3[1]) return false;
+        if(p1[0] == p4[0] && p1[1] == p4[1]) return false;
+        if(p2[0] == p3[0] && p2[1] == p3[1]) return false;
+        if(p2[0] == p4[0] && p2[1] == p4[1]) return false;
+        if(p3[0] == p4[0] && p3[1] == p4[1]) return false;
+
+        double p12 = distance(p1,p2);
+        double p13 = distance(p1,p3);
+        double p14 = distance(p1,p4);
+        double p23 = distance(p2,p3);
+        double p24 = distance(p2,p4);
+        double p34 = distance(p3,p4);
+
+        if(p12==p14){
+            if(p13==(p12+p14) && p23==p34)    // check wheater the angles are 90 degree or not using pythogorous theorm
+                return true;
+            return false;
+        }
+        if(p13 == p14){
+            if(p12==(p13+p14) && p23==p24)   // check wheater the angles are 90 degree or not using pythogorous theorm
+                return true;
+            return false;
+        }
+        if(p13 == p12){
+            if(p14==(p13+p12) && p34==p24)   // check wheater the angles are 90 degree or not using pythogorous theorm
+                return true;
+            return false;
+        }
+
+        return false;
+    }
+
+    public double distance(int[] num1 , int[] num2){
+        return Math.pow(num1[0]-num2[0],2)+Math.pow(num1[1]-num2[1],2);
+    }
+}

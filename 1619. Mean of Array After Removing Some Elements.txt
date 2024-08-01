@@ -1,0 +1,15 @@
+//1619. Mean of Array After Removing Some Elements
+
+class Solution {
+    public double trimMean(int[] arr) {
+        Arrays.sort(arr);
+        int percent = (int)(arr.length * 0.05);
+        int sum = 0;
+        for(int i = percent; i< arr.length - percent; i++){
+            sum += arr[i];
+        }
+
+        return (double)sum/(arr.length-2*percent);
+
+    }
+}

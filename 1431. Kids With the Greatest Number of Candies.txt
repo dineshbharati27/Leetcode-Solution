@@ -1,0 +1,18 @@
+//1431. Kids With the Greatest Number of Candies
+class Solution {
+    public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+
+        List<Boolean> result = new ArrayList<>(candies.length);
+        int maxValue = 0;
+
+        for(int candy:candies){
+            maxValue = Math.max(maxValue,candy);
+        }
+
+        for(int candy :candies){
+            result.add(candy+extraCandies>=maxValue);
+        }
+
+        return result;
+    }
+}

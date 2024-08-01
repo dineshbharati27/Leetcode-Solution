@@ -1,0 +1,22 @@
+//238. Product of Array Except Self
+
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int[] product = new int[nums.length];
+        int ans = 1;
+        for(int i = 0; i < nums.length; i++){
+            if(nums[i] == 0){
+                for(int j = i+1; j < nums.length; j++){
+                    ans *= nums[j];
+                }
+                product[i] = ans;
+                return product;
+            }
+            ans *= nums[i];
+        }
+        for(int digit = 0; digit < product.length; digit++){
+            product[digit] = ans/nums[digit];
+        }
+        return product;
+    }
+}

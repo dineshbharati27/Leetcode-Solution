@@ -1,0 +1,14 @@
+// 191. Number of 1 Bits
+
+class Solution {
+    public int hammingWeight(int n) {
+        int one = 0;
+        while(n>0){
+            if(n%2==1){
+                one++;
+            }
+            n = n>>1;
+        }
+        return one;
+    }
+}
