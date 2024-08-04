@@ -1,0 +1,23 @@
+//202. Happy Number
+
+class Solution {
+    public boolean isHappy(int n) {
+        int slow = n;
+        int fast = square(n);
+        while(slow != fast || fast == 1){
+            if(fast == 1) return true;
+            slow = square(slow);
+            fast = square(square(fast));
+        }
+        return false;
+    }
+
+    public int square(int n){
+        int total = 0;
+        while(n != 0){
+            total = total + (n%10) * (n%10);
+            n = n/10;
+        }
+        return total;
+    }
+}
