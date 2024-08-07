@@ -1,0 +1,22 @@
+//498. Diagonal Traverse
+
+class Solution {
+    public int[] findDiagonalOrder(int[][] mat) {
+        int x = 0, y = 0, r = mat.length, c = mat[0].length;
+        int[] res = new int[r*c];
+        for(int i = 0; i < res.length; i++){
+            res[i] = mat[x][y];
+            if ((x+y)%2==0){
+                if(y == c-1) x++;
+                else if(x==0) y++;
+                else {x--; y++;}
+            }
+            else{
+                if(x==r-1) y++;
+                else if(y == 0) x++;
+                else{x++; y--;}
+            }
+        }
+        return res;
+    }
+}
