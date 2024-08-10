@@ -1,0 +1,30 @@
+//378. Kth Smallest Element in a Sorted Matrix
+
+class Solution {
+    int row , col;
+    public int kthSmallest(int[][] matrix, int k) {
+        row = matrix.length; col = matrix[0].length;
+        int left = matrix[0][0], right = matrix[row-1][col-1];
+        int ans = -1;
+        while(left <= right){
+            int mid = (left+right)/2;
+            if(countLessOrEqual(matrix,mid) >= k){
+                ans = mid;
+                right = mid - 1;
+            }
+            else{
+                left = mid + 1;
+            }
+        }
+        return ans;
+    }
+
+    private int countLessOrEqual(int[][] matrix, int x){
+        int count = 0, c = col -1;
+        for(int r = 0; r < row ; r++){
+            while(c>=0 && matrix[r][c] > x) --c;
+            count += (c+1);
+        }
+        return count;
+    }
+}
