@@ -1,0 +1,19 @@
+//258. Add Digits
+
+class Solution {
+    public int addDigits(int num) {
+        while(num >= 10){
+            num = sumOfDigit(num);
+        }
+        return num;
+    }
+
+    private int sumOfDigit(int num){
+        int total = 0;
+        while(num != 0){
+            total += num%10;
+            num /= 10;
+        }
+        return total;
+    }
+}
