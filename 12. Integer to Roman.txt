@@ -1,0 +1,76 @@
+//12. Integer to Roman
+
+class Solution {
+    public String intToRoman(int num) {
+        Map<Integer, String> map = new HashMap<>();
+        StringBuilder s = new StringBuilder();
+
+        while(num >= 1000){
+            num -= 1000;
+            s.append("M");
+        }
+
+        while(num >= 900){
+            num -= 900;
+            s.append("CM");
+        }
+
+        while(num >= 500){
+            num -= 500;
+            s.append("D");
+        }
+
+        while(num >= 400){
+            num -= 400;
+            s.append("CD");
+        }
+
+        while(num >= 100){
+            num -= 100;
+            s.append("C");
+        }
+
+        while(num >= 90){
+            num -= 90;
+            s.append("XC");
+        }
+
+        while(num >= 50){
+            num -= 50;
+            s.append("L");
+        }
+
+        while(num >= 40){
+            num -= 40;
+            s.append("XL");
+        }
+
+        while(num >= 10){
+            num -= 10;
+            s.append("X");
+        }
+
+        while(num >= 9){
+            num-= 9;
+            s.append("IX");
+        }
+
+        while(num >= 5){
+            num -= 5;
+            s.append("V");
+        }
+
+        while(num >= 4){
+            num -= 4;
+            s.append("IV");
+        }
+
+        while(num >= 1){
+            num -= 1;
+            s.append("I");
+        }
+        
+        return s.toString();
+
+    }
+}
