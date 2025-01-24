@@ -1,0 +1,65 @@
+
+// 826. Most Profit Assigning Work
+
+/**
+ * @param {number[]} difficulty
+ * @param {number[]} profit
+ * @param {number[]} worker
+ * @return {number}
+ */
+var maxProfitAssignment = function(difficulty, profit, worker) {
+    const combine = combineSort(difficulty, profit);
+    const sortDifficulty = combine.map((item) => item.val1);
+    const sortProfit = combine.map((item) => item.val2);
+
+    let total = 0;
+    for(let num of worker){
+        let index = floorBinary(sortDifficulty, num);
+        if (index === -1) continue;
+        let max = 0;
+        while(index >= 0){
+            if (sortProfit[index] > max) max = sortProfit[index];
+            index--;
+        }
+        total += max;
+        
+    }
+    return total;
+};
+
+var floorBinary = function(arr, target){
+    if (target < arr[0]) return -1;
+    let start = 0;
+    let end = arr.length - 1;
+    let floor = -1;
+
+    while (start <= end){
+        let mid = Math.floor((start + end)/2);
+
+        if ( target === arr[mid]){
+            while(mid > 0 && arr[mid-1] === target) mid--;
+            return mid;
+        }
+        else if(target > arr[mid]){
+            floor = mid;
+            start = mid + 1;
+        }
+        else if (target < arr[mid])
+            end = mid - 1; 
+    }
+    return floor;
+}
+
+var combineSort = function(arr1, arr2){
+    var combine = arr1.map((value, index) => ({
+        val1: value,
+        val2: arr2[index]
+    }))
+
+    combine.sort((a,b)=> {
+        if(a.val1 === b.val1) return b.val2 - a.val2;
+        return a.val1 - b.val1;
+    })
+
+    return combine;
+}
