@@ -1,0 +1,6 @@
+// 197. Rising Temperature
+
+select today.id from weather today 
+join weather yesterday on 
+(date_sub(today.recordDate, interval 1 day) = yesterday.recordDate)
+where today.temperature > yesterday.temperature;

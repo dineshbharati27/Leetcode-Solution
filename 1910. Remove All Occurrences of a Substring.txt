@@ -1,0 +1,39 @@
+// 1910. Remove All Occurrences of a Substring
+
+
+/**
+ * @param {string} s
+ * @param {string} part
+ * @return {string}
+ */
+var removeOccurrences = function(s, part) {
+    let stack = [];
+    
+    for(let i = 0; i < s.length; i++){
+        stack.push(s[i])
+
+        if(stack.length >= part.length && stack.slice(-part.length).join('') == part){
+            stack.length -= part.length
+        }    
+    }
+
+    return stack.join("")
+};
+
+
+
+
+// more optimise form
+/**
+ * @param {string} s
+ * @param {string} part
+ * @return {string}
+ */
+var removeOccurrences = function(s, part) {
+    let prev;
+    do{
+        prev = s;
+        s = s.replace(part,"");
+    }while(s !== prev);
+    return s;
+};
